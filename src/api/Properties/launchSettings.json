@@ -9,7 +9,7 @@
     }
   },
   "profiles": {   
-    "CliBridgeMcp": {
+    "Api": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "",

@@ -41,6 +41,12 @@ namespace CliBridgeMCPServer
             }
             catch (Exception ex)
             {
+                Console.WriteLine($"Could not execute the {args[0]} command.");
+                Console.WriteLine($"This can happen due to invalid parameters.");
+                Console.WriteLine($"Call the {args[0]} --help for information about the expected parameters.");
+                Console.WriteLine($"Call Command:");
+                Console.WriteLine(string.Join(" ", args));
+                Console.WriteLine($"Error Details:");
                 Console.WriteLine(ex.Message);
                 return 1;
             }

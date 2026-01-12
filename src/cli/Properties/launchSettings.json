@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "Api": {
+    "Cli": {
       "commandName": "Project",
-      "commandLineArgs": "--help"
+      "commandLineArgs": "calculate 01/01/2002"
     }
   }
 }
