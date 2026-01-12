@@ -76,9 +76,8 @@ app.UseSwaggerUI(swaggerConfig =>
 });
 
 app.UseRouting();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+
+// API Controllers Endpoints
+app.MapControllers();
 
 app.Run();
