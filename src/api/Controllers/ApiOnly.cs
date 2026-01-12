@@ -8,10 +8,10 @@ namespace CliBridgeMCPServer.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class ApiOnly : ControllerBase
     {
         private readonly ILogger _logger = null;
-        public TestController(ILogger<TestController> logger)
+        public ApiOnly(ILogger<ApiOnly> logger)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
@@ -23,13 +23,13 @@ namespace CliBridgeMCPServer.Controllers
         /// <response code="406">Invalid Parameter Value</response>
         /// <response code="400">Invalid Parameter Format</response>
         /// <response code="500">Internal Error</response>
-        [HttpGet("Test")]
-        public async Task<string> Test()
+        [HttpGet("ApiEcho")]
+        public async Task<string> ApiEcho(string input)
         {
             await Task.Delay(0);
             try
             {
-                return "OK";
+                return $"Return from API Echo: {input}";
             }
             catch (Exception ex)
             {

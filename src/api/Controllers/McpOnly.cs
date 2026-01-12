@@ -1,31 +1,26 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
 using ModelContextProtocol.Server;
 
 namespace CliBridgeMCPServer.McpTools
 {
     [McpServerToolType]
-    public static class CliMcpTool
+    public class McpOnly 
     {
-        [McpServerTool, Description("Echoes the message back to the client.")]
-        public static string Echo(string message)
-        {
-            return $"hello {message}";
-        }
-
         [McpServerTool, Description("Return the AI prompt instructions on how to use CLI Bridge MCP Server")]
-        public static string Instructions()
+        public string Instructions()
         {
             string assemblyDir = System.AppContext.BaseDirectory;
             string instructionsPath = Path.Combine(assemblyDir, "AiPrompts", "Instructions.md");
-            if (!File.Exists(instructionsPath))
+            if (!System.IO.File.Exists(instructionsPath))
             {
                 return "Error: Instructions.md file not found in AiPrompts folder.";
             }
             try
             {
-                return File.ReadAllText(instructionsPath);
+                return System.IO.File.ReadAllText(instructionsPath);
             }
             catch (System.Exception ex)
             {
@@ -33,20 +28,20 @@ namespace CliBridgeMCPServer.McpTools
             }
         }
 
-            [McpServerTool, Description("Execute a command on the CLI")]
-        public static string Cli(string cliArgs = "--help")
+        [McpServerTool, Description("Execute a command on the CLI")]
+        public string Cli(string cliArgs = "--help")
         {
             string cliName = System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows) ? "cli.exe" : "cli";
             string cliDir = System.AppContext.BaseDirectory;
             string cliPath = Path.Combine(cliDir, cliName);
-            if (!File.Exists(cliPath))
+            if (!System.IO.File.Exists(cliPath))
             {
                 string cliRelativeDir = "../../../../../src/cli/bin/Debug/net10.0/";
                 cliDir = Path.GetFullPath(Path.Combine(cliDir, cliRelativeDir));
                 cliPath = Path.Combine(cliDir, cliName);
             }
 
-            if (!File.Exists(cliPath))
+            if (!System.IO.File.Exists(cliPath))
             {
                 return $"Error: Executable {cliName} not found";
             }

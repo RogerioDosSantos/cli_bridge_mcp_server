@@ -9,7 +9,7 @@
     }
   },
   "profiles": {   
-    "DotNetCoreApis": {
+    "CliBridgeMcp": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "",

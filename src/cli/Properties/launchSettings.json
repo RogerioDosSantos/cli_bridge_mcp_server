@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "donetcore_cli": {
+    "Api": {
       "commandName": "Project",
-      "commandLineArgs": "test -sc roger"
+      "commandLineArgs": "--help"
     }
   }
 }
