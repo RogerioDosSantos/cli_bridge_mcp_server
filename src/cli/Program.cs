@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CliBridgeMCPServer.Commands;
 using CliBridgeMCPServer.Interfaces;
-using CliBridgeMCPServer.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,15 +32,6 @@ namespace CliBridgeMCPServer
                         config.AddConsole();
                     });
                     services.AddHttpClient();
-
-                    // Services Injection
-                    _ = services.AddSingleton<ITestService>((serviceProvider) =>
-                    {
-                        return new TestService(
-                            loggerFactory: serviceProvider.GetRequiredService<ILoggerFactory>(),
-                            clientFactory: serviceProvider.GetRequiredService<IHttpClientFactory>()
-                            );
-                    });
                 });
 
             // Run Application

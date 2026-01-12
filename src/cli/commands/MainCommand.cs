@@ -11,7 +11,7 @@ namespace CliBridgeMCPServer.Commands
     [HelpOption("--help")]
     [VersionOptionFromMember("--version", MemberName = nameof(GetVersion))]
     [Subcommand(
-        typeof(TestCommand)
+        typeof(CalculateCommand)
         )]
     class MainCommand
     {
