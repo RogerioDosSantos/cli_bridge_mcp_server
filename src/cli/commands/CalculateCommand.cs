@@ -1,8 +1,4 @@
-﻿
-using System;
-using System.Reflection;
-using System.Threading.Tasks;
-using CliBridgeMCPServer.Interfaces;
+﻿using System.Threading.Tasks;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +6,7 @@ namespace CliBridgeMCPServer.Commands
 {
     [Command(
         Name = "calculate",
-        Description = "Execute some random calculation based on day, month, year",
+        Description = "Execute a calculation based on day, month, year",
         OptionsComparison = System.StringComparison.InvariantCultureIgnoreCase
         )]
 
@@ -58,7 +54,7 @@ namespace CliBridgeMCPServer.Commands
 
         private async Task<int> OnExecute(CommandLineApplication app)
         {
-            await Task.Delay(1);
+            await Task.Delay(0);
             int result = (YearInput * 10000) + (MonthInput * 100) + DayInput;
             _console.WriteLine($"Result = {result}");
             return 0;

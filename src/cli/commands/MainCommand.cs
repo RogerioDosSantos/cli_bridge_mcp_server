@@ -1,7 +1,6 @@
 ﻿
 using System.Reflection;
 using System.Threading.Tasks;
-using CliBridgeMCPServer.Interfaces;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Logging;
 
@@ -11,7 +10,8 @@ namespace CliBridgeMCPServer.Commands
     [HelpOption("--help")]
     [VersionOptionFromMember("--version", MemberName = nameof(GetVersion))]
     [Subcommand(
-        typeof(CalculateCommand)
+        typeof(CalculateCommand),
+        typeof(UncalculateCommand)
         )]
     class MainCommand
     {
