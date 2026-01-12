@@ -1,0 +1,15 @@
+# Build (Linux)
+
+version: "3"
+services:
+
+  api:
+    image: "rogersantos/cli_bridge_mcp_server:linux"
+    build:
+      context: ../
+      dockerfile: ./build/build_linux.docker
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+

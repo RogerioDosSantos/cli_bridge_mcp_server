@@ -1,0 +1,28 @@
+# Build Linux
+
+## Build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /workspace
+
+### Compile Project
+COPY ./src /workspace/src
+COPY ./qa /workspace/qa
+COPY ./cli_bridge_mcp_server.sln /workspace/cli_bridge_mcp_server.sln
+RUN echo "*** Compile Project" \
+  && cd /workspace \
+  && dotnet restore \
+  && dotnet publish -c Release -o /workspace/stage/release \
+  && echo "*** Compile Project - DONE" 
+
+## Release
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS cli_bridge_mcp_server_release
+WORKDIR /workspace
+
+### Install Release 
+COPY --from=build /workspace/stage/release /workspace/bin
+ENTRYPOINT ["dotnet", "/workspace/bin/api.dll"]
+ENV ASPNETCORE_URLS=http://+:8000
+ENV DOTNET_RUNNING_IN_CONTAINER=true
+ENV NUGET_XMLDOC_MODE=skip
+EXPOSE 8000
+
